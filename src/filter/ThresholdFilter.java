@@ -1,8 +1,8 @@
 package filter;
 
+import Catalano.Core.IntRange;
 import Catalano.Imaging.FastBitmap;
-import Catalano.Imaging.Filters.Grayscale;
-import Catalano.Imaging.Filters.HysteresisThreshold;
+import Catalano.Imaging.Filters.ReplaceColor;
 import Catalano.Imaging.Filters.Threshold;
 import interfaces.IPullPipe;
 import interfaces.IPushPipe;
@@ -45,15 +45,12 @@ public class ThresholdFilter extends AbstractFilter<FastBitmap, FastBitmap> {
     }
 
     private FastBitmap createThreshold(FastBitmap value){
-        Grayscale g = new Grayscale();
-        g.applyInPlace(value);
-//        Threshold t = new Threshold(_thresholdValue, true);
-//        t.applyInPlace(value);
 
-        HysteresisThreshold th = new HysteresisThreshold(0,30);
-        th.applyInPlace(value);
+        ReplaceColor colorFiltering = new ReplaceColor(new IntRange(0, 36),new IntRange(0,36),new IntRange(0,36));
+        value.toRGB();
+        colorFiltering.ApplyInPlace(value, 255,255,255);
 
-        //JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
         return value;
     }
 }

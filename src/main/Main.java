@@ -29,7 +29,7 @@ public class Main {
         ROIFilter filter2 = new ROIFilter(pipe2,0, 55, width, 80);
 
         PushPipe<FastBitmap> pipe3 = new PushPipe<>();
-        ThresholdFilter filter3  = new ThresholdFilter(pipe3, 20);
+        ThresholdFilter filter3  = new ThresholdFilter(pipe3, 30);
 
         pipe1.setSuccessorFilter(filter2);
         pipe2.setSuccessorFilter(filter3);
