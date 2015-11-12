@@ -16,41 +16,27 @@ import java.security.InvalidParameterException;
  */
 public class ThresholdFilter extends AbstractFilter<FastBitmap, FastBitmap> {
 
-    int _thresholdValue;
-
-    public ThresholdFilter(IPullPipe<FastBitmap> input, int thresholdValue) throws InvalidParameterException{
+    public ThresholdFilter(IPullPipe<FastBitmap> input) throws InvalidParameterException{
         super(input);
-        _thresholdValue = thresholdValue;
+
     }
 
-    public ThresholdFilter(IPushPipe<FastBitmap> output, int thresholdValue) throws InvalidParameterException{
+    public ThresholdFilter(IPushPipe<FastBitmap> output) throws InvalidParameterException{
         super(output);
-        _thresholdValue = thresholdValue;
-    }
-
-
-    @Override
-    public FastBitmap read() throws StreamCorruptedException {
-        return null;
     }
 
     @Override
     public void run() {
-
     }
 
     @Override
-    public void write(FastBitmap value) throws StreamCorruptedException {
-        writeOutput(createThreshold(value));
-    }
-
-    private FastBitmap createThreshold(FastBitmap value){
-
-        ReplaceColor colorFiltering = new ReplaceColor(new IntRange(0, 36),new IntRange(0,36),new IntRange(0,36));
+    FastBitmap processFilter(FastBitmap value) {
+        ReplaceColor rc = new ReplaceColor(new IntRange(0, 40),new IntRange(0,40),new IntRange(0,40));
         value.toRGB();
-        colorFiltering.ApplyInPlace(value, 255,255,255);
+        rc.ApplyInPlace(value, 255, 255, 255);
 
-        JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
+        //     JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
         return value;
     }
+
 }

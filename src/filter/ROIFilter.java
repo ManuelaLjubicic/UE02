@@ -39,25 +39,14 @@ public class ROIFilter extends AbstractFilter<FastBitmap, FastBitmap>{
     }
 
     @Override
-    public FastBitmap read() throws StreamCorruptedException {
-        return null;
-    }
-
-    @Override
     public void run() {
-
     }
 
     @Override
-    public void write(FastBitmap value) throws StreamCorruptedException {
-        writeOutput(createROI(value));
-    }
-
-    private FastBitmap createROI(FastBitmap value){
-
+    FastBitmap processFilter(FastBitmap value) {
         Crop crop = new Crop(_y, _x, _width, _height);
         crop.ApplyInPlace(value);
-        JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
+        //     JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
         return value;
     }
 }

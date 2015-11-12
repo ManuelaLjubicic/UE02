@@ -1,5 +1,6 @@
 package filter;
 
+import Catalano.Imaging.FastBitmap;
 import interfaces.*;
 
 import java.io.StreamCorruptedException;
@@ -36,6 +37,16 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
         m_Input = input;
         m_Output = output;
     }
+
+    public out read() throws StreamCorruptedException {
+        return processFilter(readInput());
+    }
+
+    public void write(in value) throws StreamCorruptedException {
+        writeOutput(processFilter(value));
+    }
+
+    abstract out processFilter(in value);
     
     protected void writeOutput(out value) throws StreamCorruptedException{
 

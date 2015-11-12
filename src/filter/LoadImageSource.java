@@ -25,7 +25,7 @@ public class LoadImageSource extends AbstractFilter<String, FastBitmap> {
 
     @Override
     public FastBitmap read() throws StreamCorruptedException {
-        return null;
+         return processFilter(_filePath);
     }
 
     @Override
@@ -34,14 +34,10 @@ public class LoadImageSource extends AbstractFilter<String, FastBitmap> {
     }
 
     @Override
-    public void write(String value) throws StreamCorruptedException {
-        writeOutput(loadImage(value));
-    }
-
-
-    private FastBitmap loadImage(String filePath){
-        FastBitmap fb = new FastBitmap(filePath);
+    FastBitmap processFilter(String value) {
+        FastBitmap fb = new FastBitmap(value);
         //JOptionPane.showMessageDialog(null, fb.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
         return fb;
     }
+
 }
