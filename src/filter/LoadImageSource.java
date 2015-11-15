@@ -34,7 +34,7 @@ public class LoadImageSource extends AbstractFilter<String, FastBitmap> {
     }
 
     @Override
-    FastBitmap processFilter(String value) {
+    public FastBitmap processFilter(String value) {
         FastBitmap fb = new FastBitmap(value);
         //JOptionPane.showMessageDialog(null, fb.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
         return fb;

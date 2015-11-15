@@ -46,7 +46,7 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
         writeOutput(processFilter(value));
     }
 
-    abstract out processFilter(in value);
+    public abstract out processFilter(in value);
     
     protected void writeOutput(out value) throws StreamCorruptedException{
 

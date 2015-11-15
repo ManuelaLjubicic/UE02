@@ -43,7 +43,7 @@ public class ROIFilter extends AbstractFilter<FastBitmap, FastBitmap>{
     }
 
     @Override
-    FastBitmap processFilter(FastBitmap value) {
+    public FastBitmap processFilter(FastBitmap value) {
         Crop crop = new Crop(_y, _x, _width, _height);
         crop.ApplyInPlace(value);
         //     JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);

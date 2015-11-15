@@ -54,13 +54,13 @@ public class OpeningFilter extends AbstractFilter<FastBitmap, FastBitmap> {
     }
 
     @Override
-    FastBitmap processFilter(FastBitmap value) {
+    public FastBitmap processFilter(FastBitmap value) {
         Opening o = new Opening(_maskSize);
       //  o = new Opening(_circleMask);
         for(int i = 0; i < _iterations; i++){
             o.applyInPlace(value);
         }
-        JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
+       // JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
         return value;
     }
 }

@@ -32,7 +32,7 @@ public class MedianFilter extends AbstractFilter<FastBitmap, FastBitmap> {
     }
 
     @Override
-    FastBitmap processFilter(FastBitmap value){
+    public FastBitmap processFilter(FastBitmap value){
         Median median = new Median(_radius);
         median.applyInPlace(value);
 //        JOptionPane.showMessageDialog(null, value.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);

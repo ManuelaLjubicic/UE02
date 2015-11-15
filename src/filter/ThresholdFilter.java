@@ -30,7 +30,7 @@ public class ThresholdFilter extends AbstractFilter<FastBitmap, FastBitmap> {
     }
 
     @Override
-    FastBitmap processFilter(FastBitmap value) {
+    public FastBitmap processFilter(FastBitmap value) {
         ReplaceColor rc = new ReplaceColor(new IntRange(0, 40),new IntRange(0,40),new IntRange(0,40));
         value.toRGB();
         rc.ApplyInPlace(value, 255, 255, 255);
