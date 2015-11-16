@@ -101,7 +101,7 @@ public class CalcCentroidsFilter extends AbstractFilter<FastBitmap, Point[]> {
 			int yMedian = yValues.get(yValues.size() / 2);
 
 			centroids[i] = new Point(xMedian, yMedian);
-			System.out.println(yMedian + " " + xMedian);
+//			System.out.println(yMedian + " " + xMedian);
 			_image.setRGB(yMedian, xMedian, 0,0,0);
 			i++;
 		}

@@ -21,6 +21,11 @@ public class Main {
         int heigth = fb.getHeight();
         String saveProcessedName = "res\\processedFoto.png";
         String printFileName = "res\\printProcessedFoto.txt";
+        int startValue = 6;
+        int incrementX = 65;
+        int setValueY = 25;
+        int toleranceX = 5;
+        int toleranceY = 5;
 
 
 
@@ -46,7 +51,7 @@ public class Main {
         CalcCentroidsFilter filter7 = new CalcCentroidsFilter(pipe7);
 
         PushPipe<Object> pipe8 = new PushPipe<>();
-        PrintSink filter8 = new PrintSink(pipe8, printFileName);
+        PrintSink filter8 = new PrintSink(pipe8, printFileName, startValue, setValueY, incrementX, toleranceX, toleranceY);
 
         pipe1.setSuccessorFilter(filter2);
         pipe2.setSuccessorFilter(filter3);
@@ -63,6 +68,8 @@ public class Main {
             System.out.println("scheiﬂe");
         }
     }
-
+//TODO
+    //schwarze mittelpunkte entfernen
+    //souts entfernen
 
 }
