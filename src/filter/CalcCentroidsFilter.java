@@ -105,7 +105,7 @@ public class CalcCentroidsFilter extends AbstractFilter<FastBitmap, Point[]> {
 			_image.setRGB(yMedian, xMedian, 0,0,0);
 			i++;
 		}
-		JOptionPane.showMessageDialog(null, _image.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
+		//JOptionPane.showMessageDialog(null, _image.toIcon(), "Result", JOptionPane.PLAIN_MESSAGE);
 		return centroids;
 	}
 

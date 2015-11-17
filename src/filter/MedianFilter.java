@@ -19,7 +19,6 @@ public class MedianFilter extends AbstractFilter<FastBitmap, FastBitmap> {
     public MedianFilter(IPullPipe<FastBitmap> input, int radius) throws InvalidParameterException {
         super(input);
         _radius = radius;
-
     }
 
     public MedianFilter(IPushPipe<FastBitmap> output, int radius) throws InvalidParameterException{
@@ -27,8 +26,9 @@ public class MedianFilter extends AbstractFilter<FastBitmap, FastBitmap> {
         _radius = radius;
     }
 
-    @Override
-    public void run() {
+    public MedianFilter(IPullPipe<FastBitmap> input, IPushPipe<FastBitmap> output, int radius, int maxIterations){
+        super(input, output, maxIterations);
+        _radius = radius;
     }
 
     @Override

@@ -16,23 +16,6 @@ public class OpeningFilter extends AbstractFilter<FastBitmap, FastBitmap> {
     private int _maskSize;
     private int _iterations;
 
-    //TODO ask Karin???
-//    private int _circleMask[][] = {
-//            { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-//            { 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0},
-//            { 0, 0, 0, 0 ,1, 1, 1, 1, 1, 0, 0, 0, 0},
-//            { 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
-//            { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
-//            { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-//            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-//            { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-//            { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
-//            { 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
-//            { 0, 0, 0, 0 ,1, 1, 1, 1, 1, 0, 0, 0, 0},
-//            { 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0},
-//            { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-//    };
-
     public OpeningFilter(IPullPipe<FastBitmap> input, int maskSize, int iterations) throws InvalidParameterException {
         super(input);
         init(maskSize, iterations);
@@ -43,15 +26,16 @@ public class OpeningFilter extends AbstractFilter<FastBitmap, FastBitmap> {
         init(maskSize, iterations);
     }
 
+    public OpeningFilter(IPullPipe<FastBitmap> input, IPushPipe<FastBitmap> output, int maskSize, int iterations, int maxIterations){
+        super(input, output, maxIterations);
+        init(maskSize, iterations);
+    }
+
     private void init(int maskSize, int iterations){
         _maskSize = maskSize;
         _iterations = iterations;
     }
 
-    @Override
-    public void run() {
-
-    }
 
     @Override
     public FastBitmap processFilter(FastBitmap value) {

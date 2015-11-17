@@ -2,11 +2,11 @@ package filter;
 
 
 import interfaces.IPullPipe;
-import interfaces.IPushPipe;
 
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 
 /**
@@ -21,14 +21,13 @@ public class PrintSink extends AbstractFilter<Point[], Object>{
     private int _toleranceX;
     private int _toleranceY;
 
-
     public PrintSink(IPullPipe<Point[]> input, String fileName, int startPoint, int setValueY, int incrementX, int toleranceX, int toleranceY) throws InvalidParameterException {
         super(input);
         init(fileName, startPoint, setValueY, incrementX, toleranceX, toleranceY);
     }
 
-    public PrintSink(IPushPipe<Object> output, String fileName, int startPoint, int setValueY, int incrementX, int toleranceX, int toleranceY) throws InvalidParameterException {
-        super(output);
+    public PrintSink(String fileName, int startPoint, int setValueY, int incrementX, int toleranceX, int toleranceY) throws InvalidParameterException {
+        super();
         init(fileName, startPoint, setValueY, incrementX, toleranceX, toleranceY);
     }
 
@@ -47,8 +46,13 @@ public class PrintSink extends AbstractFilter<Point[], Object>{
 
     }
 
+    public void write(Point[] value) throws StreamCorruptedException {
+        processFilter(value);
+    }
+
     @Override
     public Object processFilter(Point[] value) {
+
         try {
             FileWriter fw = new FileWriter(_fileName);
 

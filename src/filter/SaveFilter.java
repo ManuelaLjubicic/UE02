@@ -31,7 +31,7 @@ public class SaveFilter extends AbstractFilter<FastBitmap, FastBitmap> {
     @Override
     public FastBitmap processFilter(FastBitmap value) {
         value.saveAsPNG(_path);
-        System.out.println("Picture was saved to: " + _path);
+      //  System.out.println("Picture was saved to: " + _path);
         return value;
     }
 }

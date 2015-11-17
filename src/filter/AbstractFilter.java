@@ -9,6 +9,7 @@ import java.security.InvalidParameterException;
 public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnable {
     private IPullPipe<in> m_Input = null;
     private IPushPipe<out> m_Output = null;
+    private int _maxIterations;
     
     public static Object ENDING_SIGNAL = null;
     
@@ -28,7 +29,7 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
         m_Output = output;
     }
     
-    public AbstractFilter(IPullPipe<in> input, IPushPipe<out> output)throws InvalidParameterException{
+    public AbstractFilter(IPullPipe<in> input, IPushPipe<out> output, int maxIterations)throws InvalidParameterException{
         if (input == null){
             throw new InvalidParameterException("input can't be null!");
         }else if (output == null){
@@ -36,6 +37,7 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
         }
         m_Input = input;
         m_Output = output;
+        _maxIterations = maxIterations;
     }
 
     public out read() throws StreamCorruptedException {
@@ -44,6 +46,27 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
 
     public void write(in value) throws StreamCorruptedException {
         writeOutput(processFilter(value));
+    }
+
+    @Override
+    public void run() {
+        int i = 0;
+        while(i < _maxIterations){
+            try {
+                in inValue = readInput();
+                if(inValue != null){
+                    i++;
+                    out outValue = processFilter(inValue);
+                    writeOutput(outValue);
+                }
+//                try{
+//                    Thread.sleep(5);
+//                } catch (Exception e)
+//                {}
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public abstract out processFilter(in value);
