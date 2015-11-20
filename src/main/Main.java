@@ -21,22 +21,30 @@ public class Main {
     static int width = fb.getWidth();
     static int height = fb.getHeight();
 
-    static int startValue = 6;
-    static int incrementX = 65;
-    static int setValueY = 25;
-    static int toleranceX = 5;
-    static int toleranceY = 5;
 
 
     public static void main(String[] args) {
-        if (args.length < 4) {
+        if ((args.length < 4)||((args.length >4) && (args.length<9))) {
             System.out.println("Parameter fehlt");
         } else {
             String filePathSource = "res\\" + args[1] + ".jpg";
             String processedImAGE = "res\\" + args[2] + ".jpg";
             String printFileName = "res\\" + args[3] + ".txt";
             int maxIterations = 1;
+            int startValue = 6;
+            int incrementX = 65;
+            int setValueY = 25;
+            int toleranceX = 5;
+            int toleranceY = 5;
+            if (args.length > 4){
+                startValue = Integer.parseInt(args[4]);
+                incrementX = Integer.parseInt(args[5]);
+                setValueY = Integer.parseInt(args[6]);
+                toleranceX = Integer.parseInt(args[7]);
+                toleranceY = Integer.parseInt(args[8]);
+            }
             ImageProcessing ip = new ImageProcessing();
+
 
             switch (args[0]) {
 

@@ -84,7 +84,7 @@ public class PrintSink extends AbstractFilter<Point[], Object>{
         output = output + "\tAbweichung_X = " + diffX + "\tAbweichung_Y = " + diffY;
         if(Math.abs(diffX) > _toleranceX || Math.abs(diffY) > _toleranceY){
             //sollte eine Toleranzüberschreibung auftreten, wird eine Warung ausgegeben
-            output = output + "Toleranzwert wurde überschritten";
+            output = output + " \tToleranzwert wurde ueberschritten";
         }
         output = output + "\r\n";
         return output;
