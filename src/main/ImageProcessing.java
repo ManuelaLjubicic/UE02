@@ -112,8 +112,8 @@ public class ImageProcessing {
                              String printFileName, int startValue, int setValueY, int incrementX,
                              int toleranceX, int toleranceY, int maxIterations) {
 
-//        PullPipe<FastBitmap> pipe1 = new PullPipe<>();
-//        PrintSink filter1 = new PrintSink(pipe1, printFileName, startValue, setValueY, incrementX, toleranceX, toleranceY);
+        PullPipe<Point[]> pipe1 = new PullPipe<>();
+        PrintSink filter1 = new PrintSink(pipe1, printFileName, startValue, setValueY, incrementX, toleranceX, toleranceY);
 
         PullPipe<FastBitmap> pipe2 = new PullPipe<>();
         CalcCentroidsFilter filter2 = new CalcCentroidsFilter(pipe2);
@@ -136,7 +136,7 @@ public class ImageProcessing {
         PullPipe<FastBitmap> pipe8 = new PullPipe<>();
         LoadImageSource filter8 = new LoadImageSource(filePathSource);
 
-//        pipe1.setPredecessorFilter(filter2);
+        pipe1.setPredecessorFilter(filter2);
         pipe2.setPredecessorFilter(filter3);
         pipe3.setPredecessorFilter(filter4);
         pipe4.setPredecessorFilter(filter5);
@@ -144,12 +144,12 @@ public class ImageProcessing {
         pipe6.setPredecessorFilter(filter7);
         pipe7.setPredecessorFilter(filter8);
 
-//        try {
-//            for(int i = 0; i < maxIterations; i++){
-//                filter1.read();
-//            }
-//        } catch (StreamCorruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            for(int i = 0; i < maxIterations; i++){
+                filter1.read();
+            }
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

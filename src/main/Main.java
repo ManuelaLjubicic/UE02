@@ -51,18 +51,15 @@ public class Main {
                     break;
 
                 case "threads":
+                    maxIterations = 50;
                     long startTime = new Date().getTime();
-                    for (int i = 1; i<=50; i++){
                         ip.exerciseA(width, filePathSource, processedImAGE, printFileName, startValue, setValueY,
                                 incrementX, toleranceX, toleranceY, maxIterations);
-                    }
                     long endTime = new Date().getTime();
                     System.out.println("Laufzeit ohne Threads: " + (endTime - startTime) + "ms");
                     startTime = new Date().getTime();
-                    for (int i = 1; i<=50; i++){
                         ip.exerciseB(width, filePathSource, processedImAGE, printFileName, startValue, setValueY,
                                 incrementX, toleranceX, toleranceY, maxIterations);
-                    }
                     endTime = new Date().getTime();
                     System.out.println("Laufzeit mit Threads: " + (endTime-startTime) + "ms");
                     break;
