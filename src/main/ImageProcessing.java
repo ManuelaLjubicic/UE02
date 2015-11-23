@@ -21,7 +21,7 @@ public class ImageProcessing {
                                    int toleranceX, int toleranceY, int maxIterations) {
 
         PushPipe<FastBitmap> pipe1 = new PushPipe<>();
-        LoadImageSource filter1 = new LoadImageSource(pipe1);
+        LoadImageSource filter1 = new LoadImageSource(pipe1, maxIterations);
 
         PushPipe<FastBitmap> pipe2 = new PushPipe<>();
         ROIFilter filter2 = new ROIFilter(pipe2, 0, 55, width, 80);
@@ -65,7 +65,7 @@ public class ImageProcessing {
                                   int toleranceX, int toleranceY, int maxIterations) {
 
         PullPipe<FastBitmap> pipe1 = new PullPipe<>();
-        LoadImageSource filter1 = new LoadImageSource(filePathSource);
+        LoadImageSource filter1 = new LoadImageSource(filePathSource, maxIterations);
 
         PullPipe<FastBitmap> pipe2 = new PullPipe<>();
         ROIFilter filter2 = new ROIFilter(pipe1, 0, 55, width, 80);
